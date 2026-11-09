@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Toán 4 – Trung bình cộng</title>
+<style>
+:root{--nen:#f3f5fa;--the:#fff;--chu:#17202e;--nhat:#5b6475;--xanh:#0a4f5c;--xanh2:#e3f1f3;--dung:#156b2e;--dung2:#e4f4e8;--sai:#b41c1c;--sai2:#fdecea;--cam:#c2410c;--cam2:#fff1e6;--vang:#fff6d6;--vien:#d5dce6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--nen);color:var(--chu);font:17px/1.55 "Times New Roman",Georgia,serif}
+header{background:var(--xanh);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:5}
+header h1{margin:0;font-size:19px}header p{margin:2px 0 0;font-size:13px;opacity:.9;font-family:Arial,sans-serif}
+main{max-width:680px;margin:0 auto;padding:14px 16px 96px}
+.the{background:var(--the);border:1px solid var(--vien);border-radius:14px;padding:14px;margin:0 0 12px}
+h2{font-size:18px;color:var(--xanh);margin:18px 0 8px}
+label,.nho{font-size:14px;color:var(--nhat);font-family:Arial,sans-serif}
+input[type=text]{width:100%;font-size:18px;padding:10px 12px;border:1.5px solid var(--vien);border-radius:10px;margin:4px 0 8px;font-family:inherit}
+input:focus{outline:2px solid var(--xanh);border-color:var(--xanh)}
+button{font:inherit;font-size:16px;cursor:pointer;border-radius:10px;border:1.5px solid var(--vien);background:#fff;padding:10px 14px;color:var(--chu)}
+.chinh{background:var(--xanh);color:#fff;border-color:var(--xanh);font-weight:700}
+.bai{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left}
+.bai b{display:block}.bai small{color:var(--nhat)}
+.diem{font-weight:700;color:var(--xanh);white-space:nowrap;font-family:Arial,sans-serif;font-size:14px}
+.nhan{display:inline-block;font-size:12px;padding:1px 8px;border-radius:20px;background:var(--xanh2);color:var(--xanh);margin-right:6px;font-family:Arial,sans-serif}
+.de{font-size:18px;margin:4px 0 10px}
+.y{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px dashed var(--vien)}
+.y div{flex:1}.y button{min-width:58px;padding:8px}
+.y button.chon{background:var(--xanh);color:#fff;border-color:var(--xanh)}
+.chk{display:flex;gap:8px;align-items:flex-start;background:var(--vang);border-radius:10px;padding:8px 10px;margin-top:6px;font-size:15px}
+.chk input{width:22px;height:22px;margin-top:2px}
+.dieuhuong{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--vien);padding:10px 16px;display:flex;gap:8px;justify-content:center;z-index:5}
+.dieuhuong button{flex:1;max-width:260px}
+.kq-diem{font-size:48px;font-weight:800;color:var(--xanh);text-align:center;margin:0;font-family:Arial,sans-serif}
+.muc{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:14px;font-family:Arial,sans-serif}
+.muc div{background:var(--nen);border-radius:8px;padding:6px 10px}
+.kq{border-left:6px solid var(--vien)}.kq.d{border-left-color:var(--dung)}.kq.s{border-left-color:var(--sai)}.kq.m{border-left-color:var(--cam)}
+.tag{font-weight:700;font-family:Arial,sans-serif;font-size:14px}.d .tag{color:var(--dung)}.s .tag{color:var(--sai)}.m .tag{color:var(--cam)}
+.nhac{background:var(--sai2);border-radius:10px;padding:8px 12px;margin-top:8px}
+.nhac b{color:var(--sai)}
+.giai{background:var(--dung2);border-radius:10px;padding:8px 12px;margin-top:8px}
+.giai table{width:100%;border-collapse:collapse}.giai td{padding:3px 4px;vertical-align:top;border-bottom:1px dotted #b9d8c1}
+.giai td:last-child{width:52px;text-align:right;color:var(--dung);font-weight:700;font-family:Arial,sans-serif;font-size:14px;white-space:nowrap}
+.yk{font-size:15px;padding:3px 0}
+details summary{cursor:pointer;color:var(--xanh);font-weight:700;margin-top:8px;font-family:Arial,sans-serif;font-size:15px}
+.ov{text-decoration:overline}
+.hang{display:flex;gap:8px;flex-wrap:wrap}.hang button{flex:1;min-width:150px}
+table.ls{width:100%;border-collapse:collapse;font-size:14px;font-family:Arial,sans-serif}table.ls td,table.ls th{border-bottom:1px solid var(--vien);padding:5px;text-align:left}
+.an{display:none}
+.buoc{counter-reset:b;padding-left:0;list-style:none;margin:6px 0 0}
+.buoc li{counter-increment:b;position:relative;padding-left:30px;margin:4px 0;font-size:16px}
+.buoc li:before{content:counter(b);position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;background:var(--xanh);color:#fff;font:700 13px/22px Arial;text-align:center}
+</style></head><body>
+<header><h1>Toán 4 – Trung bình cộng</h1><p>Bài tập về nhà · cô Hoàng Thị Tinh</p></header>
+<main id="app"></main>
+<div class="dieuhuong an" id="dh"></div>
+<script>
+const DATA = [{"so": 1, "loai": "vn", "ten": "Tìm số trung bình cộng (10 bài, dễ → khó)", "phut": 45, "ds": [], "tl": [{"bai": 1, "nhan": "", "muc": "Biết", "chung": "", "de": "Tìm số trung bình cộng của các số: 36; 42; 57.", "diem": 1.0, "loai": "so", "dap": 45, "hoi": "Trung bình cộng", "dv": "", "giai": [["Tổng các số: 36 + 42 + 57 = 135", 0.5], ["Trung bình cộng: 135 : 3 = 45", 0.5]], "loi": "Chia cho sai số các số hạng (có 3 số thì chia cho 3).", "tu": "", "tu_diem": 0}, {"bai": 2, "nhan": "", "muc": "Biết", "chung": "", "de": "Tìm số trung bình cộng của các số: 18; 25; 31; 46.", "diem": 1.0, "loai": "so", "dap": 30, "hoi": "Trung bình cộng", "dv": "", "giai": [["Tổng các số: 18 + 25 + 31 + 46 = 120", 0.5], ["Trung bình cộng: 120 : 4 = 30", 0.5]], "loi": "Cộng sót một số, hoặc chia cho 3 thay vì 4.", "tu": "", "tu_diem": 0}, {"bai": 3, "nhan": "", "muc": "Hiểu", "chung": "", "de": "Một cửa hàng ngày thứ nhất bán được 125 kg gạo, ngày thứ hai bán được 140 kg gạo, ngày thứ ba bán nhiều hơn ngày thứ nhất 30 kg gạo. Hỏi trung bình mỗi ngày cửa hàng bán được bao nhiêu ki-lô-gam gạo?", "diem": 1.0, "loai": "so", "dap": 140, "hoi": "Trung bình mỗi ngày", "dv": "kg", "giai": [["Ngày thứ ba bán được: 125 + 30 = 155 (kg)", 0.25], ["Cả ba ngày bán được: 125 + 140 + 155 = 420 (kg)", 0.25], ["Trung bình mỗi ngày bán được: 420 : 3 = 140 (kg)", 0.25], ["Đáp số: 140 kg gạo", 0.25]], "loi": "Lấy luôn 30 kg làm số gạo ngày thứ ba — phải tính 125 + 30 trước.", "tu": "", "tu_diem": 0}, {"bai": 4, "nhan": "", "muc": "Hiểu", "chung": "", "de": "Trung bình cộng của hai số là 64. Biết một số là 49. Tìm số còn lại.", "diem": 1.0, "loai": "so", "dap": 79, "hoi": "Số còn lại", "dv": "", "giai": [["Tổng hai số: 64 × 2 = 128", 0.5], ["Số còn lại: 128 – 49 = 79", 0.25], ["Đáp số: 79", 0.25]], "loi": "Lấy 64 – 49 — phải tìm TỔNG hai số trước (64 × 2).", "tu": "", "tu_diem": 0}, {"bai": 5, "nhan": "", "muc": "Hiểu", "chung": "", "de": "Lớp 4A chia thành 5 tổ trồng cây. Hai tổ đầu mỗi tổ trồng được 24 cây, ba tổ sau mỗi tổ trồng được 29 cây. Hỏi trung bình mỗi tổ trồng được bao nhiêu cây?", "diem": 1.0, "loai": "so", "dap": 27, "hoi": "Trung bình mỗi tổ", "dv": "cây", "giai": [["Hai tổ đầu trồng được: 24 × 2 = 48 (cây)", 0.25], ["Ba tổ sau trồng được: 29 × 3 = 87 (cây)", 0.25], ["Trung bình mỗi tổ trồng được: (48 + 87) : 5 = 27 (cây)", 0.25], ["Đáp số: 27 cây", 0.25]], "loi": "Tính (24 + 29) : 2 — có 5 tổ, phải tính tổng số cây của cả 5 tổ rồi chia 5.", "tu": "", "tu_diem": 0}, {"bai": 6, "nhan": "", "muc": "Vận dụng", "chung": "", "de": "Tìm số trung bình cộng của các số trong dãy: 7; 11; 15; …; 95.", "diem": 1.0, "loai": "so", "dap": 51, "hoi": "Trung bình cộng", "dv": "", "giai": [["Dãy số cách đều (hơn kém nhau 4 đơn vị)", 0.25], ["nên trung bình cộng = (số đầu + số cuối) : 2", 0.25], ["Trung bình cộng: (7 + 95) : 2 = 51", 0.25], ["Đáp số: 51", 0.25]], "loi": "Chia (7 + 95) cho số số hạng — với dãy cách đều chỉ cần chia cho 2.", "tu": "", "tu_diem": 0}, {"bai": 7, "nhan": "", "muc": "Vận dụng", "chung": "", "de": "Lan có 26 quyển truyện, Mai có 34 quyển truyện. Số truyện của Hà bằng trung bình cộng số truyện của cả ba bạn. Hỏi Hà có bao nhiêu quyển truyện?", "diem": 1.0, "loai": "so", "dap": 30, "hoi": "Số truyện của Hà", "dv": "quyển", "giai": [["Số truyện của Hà bằng TBC của cả ba bạn, nên", 0.25], ["số truyện của Lan và Mai bằng 2 lần TBC: 26 + 34 = 60 (quyển)", 0.25], ["Số truyện của Hà: 60 : 2 = 30 (quyển)", 0.25], ["Đáp số: 30 quyển truyện", 0.25]], "loi": "Chia 60 cho 3 — Hà bằng TBC nên Lan + Mai chỉ bằng 2 lần TBC, phải chia 2.", "tu": "", "tu_diem": 0}, {"bai": 8, "nhan": "", "muc": "Vận dụng", "chung": "", "de": "Thùng thứ nhất có 48 l nước mắm, thùng thứ hai có 56 l nước mắm. Thùng thứ ba có nhiều hơn trung bình cộng số nước mắm của cả ba thùng là 8 l. Hỏi thùng thứ ba có bao nhiêu lít nước mắm?", "diem": 1.0, "loai": "so", "dap": 64, "hoi": "Thùng thứ ba", "dv": "l", "giai": [["2 lần TBC của cả ba thùng: 48 + 56 + 8 = 112 (l)", 0.25], ["TBC của cả ba thùng: 112 : 2 = 56 (l)", 0.25], ["Thùng thứ ba có: 56 + 8 = 64 (l)", 0.25], ["Đáp số: 64 l nước mắm", 0.25]], "loi": "Quên cộng 8 vào 48 + 56, hoặc tìm được TBC 56 rồi quên cộng thêm 8.", "tu": "", "tu_diem": 0}, {"bai": 9, "nhan": "", "muc": "Vận dụng cao", "chung": "", "de": "Trung bình cộng số tuổi của bố, mẹ và An là 26 tuổi. Nếu không tính tuổi bố thì trung bình cộng số tuổi của mẹ và An là 21 tuổi. Hỏi bố An bao nhiêu tuổi?", "diem": 1.0, "loai": "so", "dap": 36, "hoi": "Tuổi của bố", "dv": "tuổi", "giai": [["Tổng số tuổi của ba người: 26 × 3 = 78 (tuổi)", 0.25], ["Tổng số tuổi của mẹ và An: 21 × 2 = 42 (tuổi)", 0.25], ["Tuổi của bố An: 78 – 42 = 36 (tuổi)", 0.25], ["Đáp số: 36 tuổi", 0.25]], "loi": "Lấy 26 – 21 = 5 — phải đổi TBC ra TỔNG số tuổi (nhân với số người) rồi mới trừ.", "tu": "", "tu_diem": 0}, {"bai": 10, "nhan": "a", "muc": "Vận dụng cao", "chung": "Trung bình cộng của số thứ nhất và số thứ hai là 42; của số thứ hai và số thứ ba là 35; của số thứ nhất và số thứ ba là 40. Tìm ba số đó.", "de": "Tổng của ba số là bao nhiêu?", "diem": 0.25, "loai": "so", "dap": 117, "hoi": "Tổng ba số", "dv": "", "giai": [["Tổng số thứ nhất và số thứ hai: 42 × 2 = 84", 0], ["Tổng số thứ hai và số thứ ba: 35 × 2 = 70", 0], ["Tổng số thứ nhất và số thứ ba: 40 × 2 = 80", 0], ["Hai lần tổng ba số: 84 + 70 + 80 = 234", 0], ["Tổng ba số: 234 : 2 = 117", 0.25]], "loi": "Cộng 84 + 70 + 80 = 234 rồi quên chia 2 (mỗi số được cộng hai lần).", "tu": "", "tu_diem": 0}, {"bai": 10, "nhan": "b", "muc": "Vận dụng cao", "chung": "Trung bình cộng của số thứ nhất và số thứ hai là 42; của số thứ hai và số thứ ba là 35; của số thứ nhất và số thứ ba là 40. Tìm ba số đó.", "de": "Số thứ nhất là bao nhiêu?", "diem": 0.25, "loai": "so", "dap": 47, "hoi": "Số thứ nhất", "dv": "", "giai": [["Số thứ nhất: 117 – 70 = 47", 0.25]], "loi": "Lấy 117 trừ nhầm 84 hoặc 80 — phải trừ tổng số thứ hai và số thứ ba (70).", "tu": "", "tu_diem": 0}, {"bai": 10, "nhan": "c", "muc": "Vận dụng cao", "chung": "Trung bình cộng của số thứ nhất và số thứ hai là 42; của số thứ hai và số thứ ba là 35; của số thứ nhất và số thứ ba là 40. Tìm ba số đó.", "de": "Số thứ hai là bao nhiêu?", "diem": 0.25, "loai": "so", "dap": 37, "hoi": "Số thứ hai", "dv": "", "giai": [["Số thứ hai: 117 – 80 = 37", 0.25]], "loi": "Phải trừ tổng số thứ nhất và số thứ ba (80).", "tu": "", "tu_diem": 0}, {"bai": 10, "nhan": "d", "muc": "Vận dụng cao", "chung": "Trung bình cộng của số thứ nhất và số thứ hai là 42; của số thứ hai và số thứ ba là 35; của số thứ nhất và số thứ ba là 40. Tìm ba số đó.", "de": "Số thứ ba là bao nhiêu?", "diem": 0.25, "loai": "so", "dap": 33, "hoi": "Số thứ ba", "dv": "", "giai": [["Số thứ ba: 117 – 84 = 33", 0.25], ["Đáp số: 47; 37; 33", 0]], "loi": "Phải trừ tổng số thứ nhất và số thứ hai (84).", "tu": "", "tu_diem": 0}]}];
+const KHOA = "toan4_tbc_cotinh_2026_v1";
+const SO_DIEM = "";   // link …/exec của sổ điểm Google Sheets (31/10/2026); trống = không gửi
+const DS_DIEM = [0,0.1,0.25,0.5,1];
+let st = {ma:"", lop:"", bai:null, ds:[], tl:[], tu:[], chi:null};
+const $ = s => document.querySelector(s);
+function doc(){ try{ return JSON.parse(localStorage.getItem(KHOA)) || {ls:[]}; }catch(e){ return {ls:[]}; } }
+function ghi(d){ try{ localStorage.setItem(KHOA, JSON.stringify(d)); }catch(e){} }
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function m(s){ return esc(s).replace(/\^\{([^}]*)\}/g,"<sup>$1</sup>").replace(/ov\{([^}]*)\}/g,'<span class="ov">$1</span>'); }
+function so(x){ return (Math.round(x*100)/100).toString().replace(".", ","); }
+function nghin(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g," "); }
+function gopNghin(s){ let t=String(s||""); for(let k=0;k<4;k++) t=t.replace(/(\d)[\s. ](\d{3})(?!\d)/g,"$1$2"); return t; }
+function docSo(s){ s=String(s||"").trim(); if(!s) return null; if(/\d,\d/.test(s)) return NaN;
+  const a = gopNghin(s).match(/\d+/g); if(!a || a.length!==1) return NaN; return parseInt(a[0],10); }
+function docTap(s){ const a = String(s||"").replace(/[^\d;,\s]/g," ").match(/\d+/g); if(!a) return null; return [...new Set(a.map(Number))].sort((x,y)=>x-y); }
+function tlTrong(i,v){ const c=st.bai.tl[i]; return v===null||v===undefined||String(v).trim()===""; }
+function chamDS(c, tl){ if(!tl) return {k:0,d:0}; let k=0; c.y.forEach((y,j)=>{ if(tl[j]===y[1]) k++; }); return {k, d:DS_DIEM[k]}; }
+function dungKQ(c, v){
+  if(c.loai==="tap"){ const a=docTap(v); return !!a && a.length===c.dap.length && a.every((x,j)=>x===c.dap[j]); }
+  return docSo(v)===c.dap; }
+function chamTL(c, v, tu){
+  if(c.loai==="tap"){ let d = dungKQ(c,v) ? c.diem - (c.tu ? c.tu_diem : 0) : 0; if(c.tu && tu) d += c.tu_diem; return d; }
+  return dungKQ(c,v) ? c.diem : 0; }
+function dapAn(c){ if(c.loai==="tap") return "{"+c.dap.join("; ")+"}"; return nghin(c.dap)+(c.dv?" "+c.dv:""); }
+function idB(b){ return b.loai==="vn" ? "V"+b.so : b.so; }
+function nhanB(b){ return (b.loai==="vn" ? "Bài về nhà số " : "Kiểm tra · Buổi ")+b.so; }
+function tenY(c){ return "Bài "+c.bai+(c.nhan?c.nhan+")":""); }
+
+function trangDau(){
+  $("#dh").classList.add("an");
+  const d = doc(); st.ma = st.ma || d.ma || ""; st.lop = st.lop || d.lop || "";
+  let h = `  <div class="the"><b>Cách làm</b><ol class="buoc">
+   <li>Đọc đề trên app (hoặc phiếu cô phát), <b>làm vào vở</b>, trình bày đủ các bước như trên lớp.</li>
+   <li>Làm xong trên giấy mới bấm vào bài, điền <b>kết quả cuối cùng</b> của từng bài (chỉ ghi số). Không cần nhập tên hay mã.</li>
+   <li>Bấm <b>Nộp bài</b>: máy chấm, chỉ ra câu sai, lời nhắc chỗ hay sai và lời giải trình bày mẫu có biểu điểm.</li>
+   <li>${SO_DIEM?"":"Sửa bài sai vào vở bằng bút màu, bấm <b>Chép kết quả</b> gửi cô qua Zalo."}</li>
+   <li><b>Phụ huynh</b> xem cùng con: điểm, câu sai và lời giải mẫu hiện ngay trên app.</li></ol></div>`;
+  DATA.forEach((b,k)=>{
+    if(!k || DATA[k-1].loai!==b.loai) h += `<h2>${b.loai==="vn"?"Bài tập về nhà":"Bài kiểm tra cuối buổi"}</h2>`;
+    const ls = d.ls.filter(x=>x.bai===idB(b) && !x.lai);
+    const tot = ls.length ? Math.max(...ls.map(x=>x.diem)) : null;
+    h += `<button class="the bai" onclick="batDau('${idB(b)}')"><span><b>${nhanB(b)}</b><small>${esc(b.ten)} · ${b.phut} phút</small></span>
+      <span class="diem">${tot===null?"Chưa làm":"Cao nhất "+so(tot)}</span></button>`;
+  });
+  if(d.ls.length){
+    h += `<div class="the"><b>Các lần đã làm</b><table class="ls"><tr><th>Ngày</th><th>Bài</th><th>Điểm</th><th>Câu sai</th></tr>`;
+    d.ls.slice(-12).reverse().forEach(x=>{ h += `<tr><td>${esc(x.ngay)}</td><td>${typeof x.bai==="string"?"VN "+x.bai.slice(1):"KT "+x.bai}${x.lai?" (làm lại)":""}</td><td>${so(x.diem)}</td><td>${esc(x.sai.join(", ")||"—")}</td></tr>`; });
+    h += `</table></div>`;
+  }
+  h += `<p class="nho">${SO_DIEM?"":"App chỉ lưu điểm trên chính điện thoại này, không gửi đi đâu, không hỏi tên."} Điểm trên app là điểm kết quả; cô xem lại phần trình bày trong vở.</p>`;
+  $("#app").innerHTML = h; window.scrollTo(0,0);
+}
+const MA_TOI_DA = 40;   // lớp đông hơn thì tăng số này
+// «toán 07», «Toan-7», «TOAN 7» → «TOAN7»; mã cũ HS07 vẫn nhận. Sai mẫu → ""
+function chuanMa(s){
+  const t = String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/đ/gi,"D").toUpperCase().replace(/[^A-Z0-9]/g,"");
+  let k = t.match(/^TOAN0*(\d{1,2})$/); if(k){ const n=+k[1]; return n>=1 && n<=MA_TOI_DA ? "TOAN"+n : ""; }
+  k = t.match(/^HS(\d{1,2})$/); return k ? "HS"+k[1].padStart(2,"0") : ""; }
+function luuTen(){ const d=doc(); const g=$("#ma").value.trim(); const c=chuanMa(g); d.ma=st.ma=c||g.toUpperCase(); d.lop=st.lop=$("#lop").value.trim().toUpperCase(); ghi(d); if(c) $("#ma").value=c; return !!c; }
+function batDau(so_, chi){
+  st.bai = DATA.find(b=>String(idB(b))===String(so_)); st.chi = chi || null;
+  st.ds = st.bai.ds.map(()=>[null,null,null,null]); st.tl = st.bai.tl.map(()=>""); st.tu = st.bai.tl.map(()=>false);
+  veBai();
+}
+function coLam(loai,i){ return !st.chi || st.chi[loai].includes(i); }
+function veBai(){
+  const b = st.bai;
+  let h = `<div class="the"><span class="nhan">${nhanB(b)}</span><b>${esc(b.ten)}</b>
+   <div class="nho">${st.chi?"Làm lại các bài sai":(b.ds.length?"Phần I: 2,0 điểm · Phần II: 8,0 điểm":"10 bài · mỗi bài 1 điểm")}</div></div>`;
+  if(b.ds.some((_,i)=>coLam("ds",i))) h += `<h2>Phần I. Đúng – Sai</h2>`;
+  b.ds.forEach((c,i)=>{ if(!coLam("ds",i)) return;
+    h += `<div class="the"><div class="de"><b>Câu ${i+1}.</b> ${m(c.de)}</div>`;
+    c.y.forEach((y,j)=>{ const v=st.ds[i][j];
+      h += `<div class="y"><div>${"abcd"[j]}) ${m(y[0])}</div>
+       <button class="${v===true?"chon":""}" onclick="chonDS(${i},${j},true)">Đúng</button>
+       <button class="${v===false?"chon":""}" onclick="chonDS(${i},${j},false)">Sai</button></div>`; });
+    h += `</div>`; });
+  let bai0 = 0;
+  if(b.tl.some((_,i)=>coLam("tl",i))) h += `<h2>${b.ds.length?"Phần II. Tự luận — ":""}Điền kết quả cuối cùng</h2>`;
+  b.tl.forEach((c,i)=>{ if(!coLam("tl",i)) return;
+    h += `<div class="the"><span class="nhan">${esc(c.muc)} · ${so(c.diem)} đ</span>`;
+    if(c.bai!==bai0 && c.chung) h += `<div class="de"><b>Bài ${c.bai}.</b> ${m(c.chung)}</div>`;
+    bai0 = c.bai;
+    h += `<div class="de"><b>${tenY(c)}.</b> ${m(c.de)}</div>
+      <label>${esc(c.hoi)}${c.dv?" ("+esc(c.dv)+")":""}</label>
+      <input type="text" inputmode="${c.loai==="tap"?"text":"numeric"}" value="${esc(st.tl[i])}" oninput="st.tl[${i}]=this.value" placeholder="${c.loai==="tap"?"VD: 6; 7; 8":"Chỉ ghi số"}">`;
+    if(c.tu) h += `<label class="chk"><input type="checkbox" ${st.tu[i]?"checked":""} onchange="st.tu[${i}]=this.checked">
+      <span>${m(c.tu)}</span></label>`;
+    h += `</div>`; });
+  $("#app").innerHTML = h;
+  $("#dh").classList.remove("an");
+  $("#dh").innerHTML = `<button onclick="if(confirm('Thoát? Bài đang làm sẽ không được lưu.'))trangDau()">Thoát</button><button class="chinh" onclick="nop()">Nộp bài</button>`;
+  window.scrollTo(0,0);
+}
+function chonDS(i,j,v){ st.ds[i][j]=v; const y=window.scrollY; veBai(); window.scrollTo(0,y); }
+function nop(){
+  const b = st.bai; let thieu = [];
+  b.ds.forEach((c,i)=>{ if(coLam("ds",i) && st.ds[i].some(v=>v===null)) thieu.push("Câu "+(i+1)); });
+  b.tl.forEach((c,i)=>{ if(coLam("tl",i) && tlTrong(i,st.tl[i])) thieu.push(tenY(c)); });
+  if(thieu.length && !confirm("Em còn bỏ trống: "+thieu.join(", ")+". Vẫn nộp bài?")) return;
+  let tong=0, p1=0, p2=0, sai=[], kq=[];
+  b.ds.forEach((c,i)=>{ if(!coLam("ds",i)) return; const r=chamDS(c,st.ds[i]); p1+=r.d; if(r.k<4) sai.push("Câu "+(i+1)); kq.push({loai:"ds",i,r}); });
+  b.tl.forEach((c,i)=>{ if(!coLam("tl",i)) return; const d=chamTL(c,st.tl[i],st.tu[i]); p2+=d; if(d<c.diem) sai.push(tenY(c)); kq.push({loai:"tl",i,d}); });
+  tong = p1+p2;
+  const dd = doc();
+  dd.ls.push({ngay:new Date().toLocaleDateString("vi-VN"), bai:idB(b), diem:tong, sai, lai:!!st.chi});
+  if(SO_DIEM && b.loai==="vn"){ dd.cho = dd.cho || [];
+    dd.cho.push({id:st.ma+"-"+Date.now()+"-"+Math.random().toString(36).slice(2,6), ma:st.ma, lop:st.lop, buoi:b.so, lai:!!st.chi, diem:tong, p1, p2, sai:sai.join(", ")}); }
+  ghi(dd);
+  veKQ(tong,p1,p2,sai,kq);
+  if(SO_DIEM) guiSo();
+}
+// Gửi các kết quả còn chờ về sổ điểm; mất mạng thì giữ lại, lần sau mở app tự gửi tiếp.
+function guiSo(){
+  const cho = doc().cho || [], tt = () => $("#tt-gui");
+  if(!SO_DIEM || !cho.length) return;
+  if(tt()) tt().textContent = "Đang gửi điểm về sổ của thầy…";
+  Promise.all(cho.map(r => fetch(SO_DIEM, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain"}, body:JSON.stringify(r)})
+    .then(()=>r.id, ()=>null))).then(ok => {
+    const d = doc(); d.cho = (d.cho||[]).filter(r => !ok.includes(r.id)); ghi(d);
+    if(tt()) tt().textContent = d.cho.length ? "⚠️ Chưa gửi được điểm (mất mạng?). Lần sau em mở app khi có mạng, app tự gửi lại." : "✅ Đã gửi điểm về sổ của thầy.";
+  });
+}
+function veKQ(tong,p1,p2,sai,kq){
+  const b = st.bai;
+  let h = `<div class="the"><div class="nho" style="text-align:center">${nhanB(b)}${st.chi?" (làm lại)":""}</div>
+   <p class="kq-diem">${so(tong)}${st.chi?"":" / 10"}</p>
+   ${b.ds.length?`<div class="muc"><div>Phần I (Đúng – Sai): <b>${so(p1)}</b></div><div>Phần II (tự luận): <b>${so(p2)}</b></div></div>`:""}
+   ${SO_DIEM?`<p class="nho" id="tt-gui" style="text-align:center"></p>`:""}
+   <p class="nho">${sai.length?"Câu chưa đúng: "+esc(sai.join(", "))+". Đọc lời nhắc, đối chiếu lời giải mẫu, sửa vào vở bằng bút màu.":"Tuyệt vời! Em làm đúng hết. Đối chiếu lời giải mẫu để chắc phần trình bày được điểm tối đa."}</p></div>`;
+  kq.forEach(x=>{
+    if(x.loai==="ds"){ const c=b.ds[x.i], tl=st.ds[x.i], cls=x.r.k===4?"d":(x.r.k>=2?"m":"s");
+      h += `<div class="the kq ${cls}"><span class="tag">Câu ${x.i+1} · đúng ${x.r.k}/4 ý · ${so(x.r.d)} đ</span><div class="de">${m(c.de)}</div>`;
+      c.y.forEach((y,j)=>{ const ok = tl[j]===y[1];
+        h += `<div class="yk">${ok?"✅":"❌"} ${"abcd"[j]}) ${m(y[0])} — <b>${y[1]?"Đúng":"Sai"}</b>${ok?"":` <span class="nho">(em chọn ${tl[j]===null?"—":(tl[j]?"Đúng":"Sai")})</span>`}<br><span class="nho">Vì: ${m(y[2])}</span></div>`; });
+      h += `</div>`;
+    } else { const c=b.tl[x.i], ok = x.d>=c.diem, cls = ok?"d":(x.d>0?"m":"s");
+      h += `<div class="the kq ${cls}"><span class="tag">${tenY(c)} · ${so(x.d)}/${so(c.diem)} đ</span>
+        <div class="de">${c.chung?m(c.chung)+" ":""}${m(c.de)}</div>
+        <div class="nho">Em ghi: <b>${esc(st.tl[x.i]||"(bỏ trống)")}</b> · Đáp số: <b>${esc(dapAn(c))}</b></div>`;
+      if(!ok) h += `<div class="nhac"><b>Chú ý chỗ hay sai:</b> ${m(c.loi)}</div>`;
+      h += `<details ${ok?"":"open"}><summary>Lời giải trình bày mẫu và biểu điểm</summary><div class="giai"><table>`;
+      c.giai.forEach(g=>{ h += `<tr><td>${m(g[0])}</td><td>${g[1]?so(g[1])+" đ":""}</td></tr>`; });
+      h += `</table></div></details></div>`;
+    } });
+  h += `<div class="hang">${sai.length?`<button class="chinh" onclick="lamLai()">Làm lại câu sai</button>`:""}
+    <button onclick="chep(${tong},'${esc(sai.join(", "))}')">Chép kết quả gửi cô</button></div>`;
+  $("#app").innerHTML = h;
+  $("#dh").innerHTML = `<button onclick="trangDau()">Về trang đầu</button>`;
+  st._kq = kq; window.scrollTo(0,0);
+}
+function lamLai(){
+  const b = st.bai, ds=[], tl=[];
+  st._kq.forEach(x=>{ if(x.loai==="ds" && x.r.k<4) ds.push(x.i); if(x.loai==="tl" && x.d<b.tl[x.i].diem) tl.push(x.i); });
+  batDau(idB(b), {ds, tl});
+}
+function chep(t, sai){
+  const s = `Toán 4 TBC · ${nhanB(st.bai)}${st.chi?" (làm lại)":""} · Điểm app: ${so(t)} · Câu sai: ${sai||"không"} · ${new Date().toLocaleString("vi-VN")}`;
+  if(navigator.clipboard) navigator.clipboard.writeText(s).then(()=>alert("Đã chép. Phụ huynh mở Zalo, dán vào tin nhắn gửi cô (ghi kèm tên con)."), ()=>prompt("Chép dòng này:", s));
+  else prompt("Chép dòng này:", s);
+}
+(function(){ const u = new URLSearchParams(location.search), d=doc(); trangDau();
+  const n = u.get("vn") || u.get("bai"), q = n ? "V"+n : null;   // app chỉ còn bài về nhà; link cũ ?bai=n mở bài về nhà buổi n
+  if(q && DATA.find(b=>String(idB(b))===q)) batDau(q);
+  guiSo(); })();
+</script></body></html>
